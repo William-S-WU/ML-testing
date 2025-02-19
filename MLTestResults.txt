@@ -1,0 +1,37 @@
+MLRPCA Documentation
+
+Linear PCA
+pc = 10 
+> print(paste("Linear Regression with PCA - Mean Absolute Error (MAE):", mae_lm_pca))
+[1] "Linear Regression with PCA - Mean Absolute Error (MAE): 0.603326880347209"
+> print(paste("Linear Regression with PCA - Root Mean Square Error (RMSE):", rmse_lm_pca))
+[1] "Linear Regression with PCA - Root Mean Square Error (RMSE): 0.761417914959987"
+
+pc = 8
+> print(paste("Linear Regression with PCA - Mean Absolute Error (MAE):", mae_lm_pca))
+[1] "Linear Regression with PCA - Mean Absolute Error (MAE): 0.637362845262506"
+> print(paste("Linear Regression with PCA - Root Mean Square Error (RMSE):", rmse_lm_pca))
+[1] "Linear Regression with PCA - Root Mean Square Error (RMSE): 0.804728594357707"
+
+
+pc = 8 componets 6,7 removed
+> print(paste("Linear Regression with PCA - Mean Absolute Error (MAE):", mae_lm_pca))
+[1] "Linear Regression with PCA - Mean Absolute Error (MAE): 0.637330631256264"
+> print(paste("Linear Regression with PCA - Root Mean Square Error (RMSE):", rmse_lm_pca))
+[1] "Linear Regression with PCA - Root Mean Square Error (RMSE): 0.804689093359277"
+
+pc = 10 componets 6,7 removed
+> print(paste("Linear Regression with PCA - Mean Absolute Error (MAE):", mae_lm_pca))
+[1] "Linear Regression with PCA - Mean Absolute Error (MAE): 0.603044674272644"
+> print(paste("Linear Regression with PCA - Root Mean Square Error (RMSE):", rmse_lm_pca))
+[1] "Linear Regression with PCA - Root Mean Square Error (RMSE): 0.761421783350582"
+
+Linear no PCA 
+> print(paste("Linear Regression with PCA - Mean Absolute Error (MAE):", mae_lm_pca))
+[1] "Linear Regression with PCA - Mean Absolute Error (MAE): 0.599738670449613"
+> print(paste("Linear Regression with PCA - Root Mean Square Error (RMSE):", rmse_lm_pca))
+[1] "Linear Regression with PCA - Root Mean Square Error (RMSE): 0.757759728224828"
+
+Logrithmic no PCA
+[1] "Mean Absolute Error (MAE): 0.555669050051072"
+[1] "Root Mean Square Error (RMSE): 0.832191931975152"

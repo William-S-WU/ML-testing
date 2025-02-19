@@ -4,7 +4,7 @@
 
 library(caret)
 library(ggplot2)
-
+library(nnet)
 
 getwd()
 print(getwd())
@@ -27,18 +27,22 @@ print(dim(train_data))
 print(dim(test_data))
 
 
-modellinear <- lm(quality ~ ., data = train_data)
-summary(modellinear)
 
 
+modellog <- multinom(quality ~ ., data = train_data)
 
-# Get predictions from the linear model
-predictions <- predict(modellinear, test_data)
+summary(modellog)
+predictions <- predict(modellog, test_data)
+print(predictions)
 
-# Create a dataframe with actual and predicted values
-plot_data <- data.frame(Actual = test_data$quality, Predicted = predictions)
+actual <- test_data$quality
 
-ggplot(plot_data, aes(x = Actual, y = Predicted)) +
+predictions_numeric <- as.numeric(as.character(predictions))
+actual_numeric <- as.numeric(as.character(test_data$quality))
+
+plot_data2 <- data.frame(Actual = test_data$quality, Predicted = predictions)
+
+ggplot(plot_data2, aes(x = Actual, y = Predicted)) +
   geom_point(color = 'skyblue') +
   geom_smooth(method = "lm", color = 'red', se = FALSE) +
   ggtitle('Actual vs Predicted Values') +
@@ -46,18 +50,17 @@ ggplot(plot_data, aes(x = Actual, y = Predicted)) +
   ylab('Predicted Quality') +
   theme_minimal()
 
-summary(modellinear)
+###################################################################
 
+# Assuming you have the actual and predicted values in plot_data2
+
+
+# Calculate MAE
+mae <- mean(abs(predictions_numeric - actual_numeric))
+print(paste("Mean Absolute Error (MAE):", mae))
+# Calculate RMSE
+rmse <- sqrt(mean((predictions_numeric - actual_numeric)^2))
+print(paste("Root Mean Square Error (RMSE):", rmse))
 
 ###################################################################
 
-# Calculate MAE and RMSE
-mae_lm_pca <- mean(abs(predictions - test_data$quality))
-rmse_lm_pca <- sqrt(mean((predictions - test_data$quality)^2))
-
-print(paste("Linear Regression with PCA - Mean Absolute Error (MAE):", mae_lm_pca))
-print(paste("Linear Regression with PCA - Root Mean Square Error (RMSE):", rmse_lm_pca))
-
-
-
-###################################################################
